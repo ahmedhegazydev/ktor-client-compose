@@ -9,7 +9,6 @@ import io.ktor.http.*
 
 class PostsServiceImpl constructor(
     private val client: HttpClient,
-
     ) : PostsService {
 
 

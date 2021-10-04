@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PostResponse(
+    val id: Int,
     val userId: Int,
-    val id: String,
     val title: String,
     val body: String,
 )

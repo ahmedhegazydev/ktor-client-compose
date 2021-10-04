@@ -12,11 +12,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hegazy.ktorclientcompose.data.remote.PostsService
-import com.hegazy.ktorclientcompose.data.remote.PostsServiceImpl
 import com.hegazy.ktorclientcompose.data.remote.dto.PostResponse
 import com.hegazy.ktorclientcompose.ui.theme.KtorClientComposeTheme
 
@@ -28,13 +28,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
 
+        setContent {
             val posts = produceState<List<PostResponse>>(
                 initialValue = emptyList(),
                 producer = {
                     value = postsService.getPosts()
-
                 })
 
             KtorClientComposeTheme {
@@ -43,14 +42,15 @@ class MainActivity : ComponentActivity() {
 //                    Greeting("Android")
                     LazyColumn {
                         items(posts.value) {
+                            println("testing val " + it.title)
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(5.dp)
                             ) {
-                                Text(text = it.title, fontSize = 20.sp)
+                                Text(text = it.title, fontSize = 20.sp,)
                                 Spacer(modifier = Modifier.height(4.dp))
-                                Text(text = it.body, fontSize = 16.sp)
+                                Text(text = it.body, fontSize = 16.sp, )
                             }
                         }
                     }
@@ -60,15 +60,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    KtorClientComposeTheme {
-        Greeting("Android")
-    }
-}

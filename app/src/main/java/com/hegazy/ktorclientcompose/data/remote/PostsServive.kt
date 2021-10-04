@@ -17,7 +17,7 @@ interface PostsService {
 
     companion object{
 
-        fun create(): PostsService{
+        fun create(): PostsService {
             return PostsServiceImpl(
                 client = HttpClient(Android){
                     install(Logging){
